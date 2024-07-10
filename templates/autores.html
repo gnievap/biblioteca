@@ -18,20 +18,18 @@
     {% block content %}
         <table class="table table-success table-striped">
             <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Título</th>
-                <th scope="col">Nombre del autor</th>
+                <th scope="col">Id. de autor</th>
+                <th scope="col">Nombre de autor</th>
                 <th scope="col">Apellido del autor</th>
-                <th scope="col">Editorial</th>
+                <th scope="col">País de origen</th>
             </tr>
-            {% for fila in datos %}
-            <tr>
-                <td>{{ fila[0] }}</td>
-                <td>{{ fila[1] }}</td>
-                <td>{{ fila[2] }}</td>
-                <td>{{ fila[3] }}</td>
-                <td>{{ fila[4] }}</td>
-            </tr>
+            {% for autor in datos %}
+                <tr>
+                    <td>{{ autor[0] }}</td>
+                    <td>{{ autor[1] }}</td>
+                    <td>{{ autor[2] }}</td>
+                    <td>{{ autor[3] }}</td>
+                </tr>
             {% endfor %}
         </table>
     {% endblock %}
