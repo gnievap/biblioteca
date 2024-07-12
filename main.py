@@ -1,5 +1,5 @@
 import psycopg2
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, url_for
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import PasswordField, StringField, SubmitField
@@ -73,3 +73,23 @@ def paises():
     cursor.close()
     conexion.close()
     return render_template('paises.html', datos=datos)
+
+@app.route('/delete_pais/<int:id_pais>', methods=['POST'])
+def delete_pais(id_pais):
+    conexion = psycopg2.connect(
+        database="biblioteca3a",
+        user="postgres",
+        password="gnieva",
+        host="localhost",
+        port="5432"
+    )
+    # crear un cursor (objeto para recorrer las tablas)
+    cursor = conexion.cursor()
+    # Borrar el registro con el id_pais seleccionado
+    cursor.execute('''DELETE FROM pais WHERE id_pais=%s''',
+                   (id_pais,))
+    conexion.commit()
+    cursor.close()
+    conexion.close()
+    return redirect(url_for('index'))
+
