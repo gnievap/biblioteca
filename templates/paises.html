@@ -28,7 +28,7 @@
                     <td>{{ pais[0] }}</td>
                     <td>{{ pais[1] }}</td>
                     <td>
-                        <form action="" method="POST">
+                        <form action="{{ url_for('update1_pais', id_pais=pais[0]) }}" method="POST">
                             <button type="submit" class="btn btn-primary">
                                 Editar
                             </button>
