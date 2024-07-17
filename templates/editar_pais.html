@@ -19,15 +19,16 @@
         <div class="container-fluid">
             <h2>Edición de nombre del país</h2>
             <br>
-            <form action="" method="post">
-                {% for pais in datos %}
+            {% for pais in datos %}
+                <form action="{{ url_for('update2_pais',nombre=pais[1],id_pais=pais[0],) }}" method="post">
                     <input type="hidden" name="id" value="{{pais[0]}}">
                     <label for="nombre">Nombre del país</label>
                     <input type="text" name="nombre" value="{{pais[1]}}">
                     <input type="submit" value="Actualizar">
                     <a href="{{url_for('index')}}">Cancelar</a>
-                {% endfor %}
-            </form>
+                </form>
+            {% endfor %}
+            
         </div>
     {% endblock %}
 {% endblock %}
