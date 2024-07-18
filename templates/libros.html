@@ -16,23 +16,27 @@
     {% endblock %}
 
     {% block content %}
-        <table class="table table-success table-striped">
-            <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Título</th>
-                <th scope="col">Nombre del autor</th>
-                <th scope="col">Apellido del autor</th>
-                <th scope="col">Editorial</th>
-            </tr>
-            {% for fila in datos %}
-            <tr>
-                <td>{{ fila[0] }}</td>
-                <td>{{ fila[1] }}</td>
-                <td>{{ fila[2] }}</td>
-                <td>{{ fila[3] }}</td>
-                <td>{{ fila[4] }}</td>
-            </tr>
-            {% endfor %}
+    <h2>Listado de libros</h2>
+        <div class="container-fluid">
+            <table class="table table-success table-striped">
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Nombre del autor</th>
+                    <th scope="col">Apellido del autor</th>
+                    <th scope="col">Editorial</th>
+                </tr>
+                {% for fila in datos %}
+                <tr>
+                    <td>{{ fila[0] }}</td>
+                    <td>{{ fila[1] }}</td>
+                    <td>{{ fila[2] }}</td>
+                    <td>{{ fila[3] }}</td>
+                    <td>{{ fila[4] }}</td>
+                </tr>
+                {% endfor %}
+        </div>
+        
         </table>
     {% endblock %}
 {% endblock %}
