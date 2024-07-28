@@ -1,53 +1,65 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Web App - Insertar libro</title>
-</head>
-<body>
-    <div class="container-fluid">
-        <h2>Agregar nuevo libro</h2>
-        <form action="{{ url_for(insertar_libro) }}" method="post">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.titulo.label(class="form-control-label")}}
-                {{ form.titulo(class="form-control")}}
-            </div>
-            <div class="form-group">
-                {{ form.fk_autor.label(class="form-control-label")}}
-                {{ form.fk_autor(class="form-control")}}
-            </div>
-            <div class="form-group">
-                {{ form.fk_editorial.label(class="form-control-label")}}
-                {{ form.fk_editorial(class="form-control")}}
-            </div>
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+    {{ super() }}
+    <title>
+        {% block title %}
+            Webapp Flask
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="../static/style/style.css">
+{% endblock %}
+    
+{% block body %}
+    
+    {% block navbar %}
+        {% include 'navbar.html' %}
+    {% endblock %}
+    
+    {% block content %}
+        <div class="container-fluid">
+            <h2>Agregar nuevo libro</h2>
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
 
-            <!-- <div class="form-group">
-                {{ fk_autor = QuerySelectField('Autor',
-                    query_factory=lambda:
-                    Autor.query.all(),
-                    get_label= lambda autor:'{autor.nombre}{autor.apellido}',
-                    allow_blank=True
-                )}}
-            </div> -->
-            <!-- <div class="form-group">
-                {{ fk_editorial = QuerySelectField('Editorial',
-                    query_factory=lambda:
-                    Editorial.query.all(),
-                    get_label= lambda editorial:'{editorial.nombre}',
-                    allow_blank=True
-                )}}
-            </div> -->
-            <div class="form-group">
-                {{ form.edicion.label(class="form-control-label") }}
-                {{ form.edicion(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-primary")}}
-            </div>
+                <div class="form-group">
+                    {{ form.titulo.label(class="form-control-label")}}
+                    {{ form.titulo(class="form-control")}}
+                </div>
 
-        </form>
-    </div>
-</body>
-</html>
+                <div class="form-group">
+                    <label for="fk_autor" class="form-control-label">Autor</label>
+                    <select name="fk_autor" class="form-control">
+                        <option value="">Selecciona un autor</option>
+                        {% for autor in form.fk_autor.choices %}
+                            <option value="{{ autor[0] }}">{{ autor[1] }} {{ autor[2] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="fk_editorial" class="form-control-label">
+                        Editorial
+                    </label>
+                    <select name="fk_editorial" class="form-control">
+                        <option value="">Selecciona la editorial</option>
+                        {% for editorial in form.fk_editorial.choices %}
+                            <option value="{{ editorial[0] }}">{{ editorial[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    {{ form.edicion.label(class="form-control-label") }}
+                    {{ form.edicion(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+                <div class="form-group">
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    {% endblock %}
+{% endblock %}
